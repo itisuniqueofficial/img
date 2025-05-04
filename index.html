@@ -8,59 +8,94 @@
   <link rel="shortcut icon" href="https://www.itisuniqueofficial.com/favicon.ico" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.3s ease-out;
+    }
+
     input:invalid {
-      border-color: red;
+      border-color: #ef4444;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+    }
+
+    .input-transition {
+      transition: all 0.2s ease-out;
+    }
+
+    .btn-transition {
+      transition: background-color 0.2s ease-out, transform 0.1s ease-out;
+    }
+
+    .btn-transition:hover {
+      transform: translateY(-1px);
+    }
+
+    .focus-visible {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
     }
   </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
-  <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
-    <h1 class="text-2xl font-bold text-center mb-4">Image URL Generator</h1>
-    <p class="text-gray-600 text-center mb-6">Create custom SVG placeholder images with the It Is Unique Official Image Generator.</p>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-6">
+  <div class="bg-white rounded-lg shadow-sm p-8 w-full max-w-lg">
+    <h1 class="text-xl font-medium text-gray-900 text-center mb-2">Image URL Generator</h1>
+    <p class="text-gray-500 text-center mb-8 text-sm">Create custom SVG placeholders with ease.</p>
 
-    <form id="imageForm" class="space-y-4">
-      <div class="grid grid-cols-2 gap-4">
+    <form id="imageForm" class="space-y-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label for="width" class="block text-sm font-medium text-gray-700">Width (1-2000)</label>
+          <label for="width" class="block text-sm font-medium text-gray-700 mb-1">Width (1-2000)</label>
           <input type="number" id="width" name="width" min="1" max="2000" value="400" required
-                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                 class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 input-transition text-sm py-2 px-3">
         </div>
         <div>
-          <label for="height" class="block text-sm font-medium text-gray-700">Height (1-2000)</label>
+          <label for="height" class="block text-sm font-medium text-gray-700 mb-1">Height (1-2000)</label>
           <input type="number" id="height" name="height" min="1" max="2000" value="300" required
-                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                 class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 input-transition text-sm py-2 px-3">
         </div>
       </div>
 
       <div>
-        <label for="text" class="block text-sm font-medium text-gray-700">Text (max 100 chars)</label>
+        <label for="text" class="block text-sm font-medium text-gray-700 mb-1">Text (max 100 chars)</label>
         <input type="text" id="text" name="text" maxlength="100" placeholder="400x300"
-               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 input-transition text-sm py-2 px-3">
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label for="bg" class="block text-sm font-medium text-gray-700">Background Color (Hex)</label>
-          <input type="text" id="bg" name="bg" value="#ccc" pattern="^#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?$"
-                 class="mt-1 block w-full rounded-md border reculor-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+          <label for="bg" class="block text-sm font-medium text-gray-700 mb-1">Background Color</label>
+          <div class="flex items-center gap-3">
+            <input type="color" id="bg" name="bg" value="#cccccc"
+                   class="h-9 w-9 rounded-md border-none p-1 cursor-pointer">
+            <input type="text" id="bgText" name="bgText" value="#ccc" pattern="^#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?$"
+                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 input-transition text-sm py-2 px-3">
+          </div>
         </div>
         <div>
-          <label for="color" class="block text-sm font-medium text-gray-700">Text Color (Hex)</label>
-          <input type="text" id="color" name="color" value="#555" pattern="^#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?$"
-                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+          <label for="color" class="block text-sm font-medium text-gray-700 mb-1">Text Color</label>
+          <div class="flex items-center gap-3">
+            <input type="color" id="color" name="color" value="#555555"
+                   class="h-9 w-9 rounded-md border-none p-1 cursor-pointer">
+            <input type="text" id="colorText" name="colorText" value="#555" pattern="^#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?$"
+                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 input-transition text-sm py-2 px-3">
+          </div>
         </div>
       </div>
 
       <div>
-        <label for="size" class="block text-sm font-medium text-gray-700">Font Size (8-200)</label>
+        <label for="size" class="block text-sm font-medium text-gray-700 mb-1">Font Size (8-200)</label>
         <input type="number" id="size" name="size" min="8" max="200" value="24"
-               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 input-transition text-sm py-2 px-3">
       </div>
 
       <div>
-        <label for="font" class="block text-sm font-medium text-gray-700">Font</label>
+        <label for="font" class="block text-sm font-medium text-gray-700 mb-1">Font</label>
         <select id="font" name="font"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 input-transition text-sm py-2 px-3">
           <option value="Arial, sans-serif" selected>Arial</option>
           <option value="Helvetica, sans-serif">Helvetica</option>
           <option value="Times New Roman, serif">Times New Roman</option>
@@ -71,28 +106,30 @@
       </div>
 
       <button type="button" onclick="generateImage()"
-              class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">
+              class="w-full bg-blue-600 text-white py-2.5 rounded-md hover:bg-blue-700 btn-transition font-medium text-sm">
         Generate Image
       </button>
     </form>
 
-    <div id="output" class="mt-6 hidden">
-      <h2 class="text-lg font-semibold">Generated Image</h2>
-      <img id="preview" class="mt-2 w-full rounded-md shadow-md" alt="Generated Image">
-      <div class="mt-4">
-        <label for="generatedUrl" class="block text-sm font-medium text-gray-700">Generated URL</label>
-        <input type="text" id="generatedUrl" readonly
-               class="mt-1 block w-full rounded-md border-gray-300 bg-gray-100 p-2">
-        <button onclick="copyUrl()"
-                class="mt-2 bg-green-500 text-white py-1 px-3 rounded-md hover:bg-green-600">
-          Copy URL
-        </button>
+    <div id="output" class="mt-8 hidden fade-in">
+      <h2 class="text-base font-medium text-gray-900 mb-3">Generated Image</h2>
+      <img id="preview" class="w-full rounded-md shadow-sm" alt="Generated Image">
+      <div class="mt-5">
+        <label for="generatedUrl" class="block text-sm font-medium text-gray-700 mb-1">Generated URL</label>
+        <div class="flex gap-3">
+          <input type="text" id="generatedUrl" readonly
+                 class="block w-full rounded-md border-gray-300 bg-gray-50 p-2.5 text-sm">
+          <button onclick="copyUrl()"
+                  class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 btn-transition text-sm">
+            Copy
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <footer class="mt-8 text-gray-600 text-center">
-    Powered by <a href="https://www.itisuniqueofficial.com" target="_blank" class="text-indigo-600 hover:underline">
+  <footer class="mt-8 text-gray-500 text-center text-sm">
+    Powered by <a href="https://www.itisuniqueofficial.com" target="_blank" class="text-blue-600 hover:underline">
       It Is Unique Official
     </a>
   </footer>
@@ -109,8 +146,8 @@
         width: document.getElementById('width').value,
         height: document.getElementById('height').value,
         text: document.getElementById('text').value || `${document.getElementById('width').value}x${document.getElementById('height').value}`,
-        bg: document.getElementById('bg').value,
-        color: document.getElementById('color').value,
+        bg: document.getElementById('bgText').value,
+        color: document.getElementById('colorText').value,
         size: document.getElementById('size').value,
         font: document.getElementById('font').value,
       });
@@ -131,6 +168,20 @@
       navigator.clipboard.writeText(generatedUrl.value);
       alert('URL copied to clipboard!');
     }
+
+    // Sync color picker and text input
+    document.getElementById('bg').addEventListener('input', (e) => {
+      document.getElementById('bgText').value = e.target.value;
+    });
+    document.getElementById('bgText').addEventListener('input', (e) => {
+      document.getElementById('bg').value = e.target.value;
+    });
+    document.getElementById('color').addEventListener('input', (e) => {
+      document.getElementById('colorText').value = e.target.value;
+    });
+    document.getElementById('colorText').addEventListener('input', (e) => {
+      document.getElementById('color').value = e.target.value;
+    });
   </script>
 </body>
 </html>
