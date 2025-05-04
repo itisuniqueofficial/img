@@ -1,7 +1,3 @@
-Here is your **Image URL Generator** project overview again, rewritten for clarity, formatting, and easy copying or sharing:
-
----
-
 # **Image URL Generator**
 
 A web-based tool for generating custom SVG placeholder images using a **Cloudflare Worker**.
