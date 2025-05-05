@@ -58,7 +58,7 @@ cd image-url-generator
 
 1. Copy `worker.js` into Cloudflare Workers.
 2. Deploy at a route like:
-   `https://img.itisuniqueofficial.workers.dev/`
+   `https://img.itisuniqueofficial.com/`
 
 ---
 
@@ -157,16 +157,16 @@ function escapeXML(str) {
 ## 🔗 Example URLs
 
 * Default:
-  `https://img.itisuniqueofficial.workers.dev/`
+  `https://img.itisuniqueofficial.com/`
 
 * Custom Size:
-  `https://img.itisuniqueofficial.workers.dev/?width=800&height=600`
+  `https://img.itisuniqueofficial.com/?width=800&height=600`
 
 * Custom Text + Colors:
-  `https://img.itisuniqueofficial.workers.dev/?width=500&height=400&text=Hello%20World&bg=#FF0000&color=#FFFFFF`
+  `https://img.itisuniqueofficial.com/?width=500&height=400&text=Hello%20World&bg=#FF0000&color=#FFFFFF`
 
 * Font + Size:
-  `https://img.itisuniqueofficial.workers.dev/?width=600&height=300&text=Custom%20Font&font=Helvetica,%20sans-serif&size=36`
+  `https://img.itisuniqueofficial.com/?width=600&height=300&text=Custom%20Font&font=Helvetica,%20sans-serif&size=36`
 
 ---
 
